@@ -19,11 +19,28 @@ namespace ConsoleApp2
                 }
             } while (!int.TryParse(Str, out Length));
             Length = Convert.ToInt32(Str);
-            Group[] Students = new Group[Length];
-            string groupNo = Checker("Qrup Adini daxil edin: ");
             for (int i = 0; i < Length; i++)
             {
-                Console.WriteLine($"\n========Telebe {i + 1}========\n");
+                Console.WriteLine($"\n======={i+1} Qrup=======\n");
+                Console.Write("Qrupdaki telebeleri syini daxil edin: ");
+                int NumberOfStudent;
+                string NumberOfStudentStr;
+                do
+                {
+                    Console.Write("Deyer daxil edin: ");
+                    NumberOfStudentStr = Console.ReadLine();
+                    if (!int.TryParse(NumberOfStudentStr, out NumberOfStudent))
+                    {
+                        Console.WriteLine("\n\tYalnizca reqem daxil edin\n");
+                    }
+                } while (!int.TryParse(NumberOfStudentStr, out NumberOfStudent));
+                NumberOfStudent = Convert.ToInt32(NumberOfStudentStr);
+
+                Group[] Students = new Group[NumberOfStudent];
+            string groupNo = Checker("Qrup Adini daxil edin: ");
+            for (int j = 0; j < NumberOfStudent; j++)
+            {
+                Console.WriteLine($"\n========Telebe {j + 1}========\n");
                 string name = Checker("Telebenin adini daxil edin: ",2);
                 string lastName = Checker("Telebenin soyadini daxil edin: ",5);
                 int age = AgeChecker("Telebenin yasini daxil edin: ");
@@ -36,11 +53,12 @@ namespace ConsoleApp2
                 };
                 Students[i] = Student;
             }
-            for (int i = 0; i < Students.Length; i++)
+            for (int j = 0; j < Students.Length; j++)
             {
                 Console.WriteLine($"\n======{i+1}.Telebe======");
                 Console.WriteLine(Students[i].GetInfo());
             }
+        }
         }
         static int AgeChecker(string value)
         {
